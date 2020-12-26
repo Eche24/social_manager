@@ -15,15 +15,17 @@
           </svg>
         </button>
       </div>
-        <Modal :open="open" @close="open = false" class="flex items-center justify-center z-40" >
+        <Modal :open="open" @close="open = false" class="flex items-center justify-center z-40 mt-4" >
           <div class="max-w-lg w-full rounded-lg shadow-2xl px-6 py-6 z-40 bg-blue-darker">
             <form >
                   <textarea
                   autofocus 
                   placeholder="text here" 
                   id="text-box"
+                  rows="6"
+                  cols="32"
                   v-model="note.text" 
-                  class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full no-border rounded-md" required></textarea>
+                  class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full resize-none border rounded-md" required></textarea>
                 <div class="mt-6">
               <button   @click.prevent="addNote" class="ml-4 px-4 py-2 text-gray-800 font-semibold bg-white hover:bg-gray-100 border rounded focus:outline-none focus:shadow-outline">
                 Add Note
@@ -38,10 +40,10 @@
    <section class="ml-20">
          <div class="container mt-4 mx-auto">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" v-for="(note, index) in notes" :key="note.index">
-      <div class="card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200">
+      <div class="card m-2 border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200">
         <div class="m-3">
           <h4 class="text-lg mb-2">{{note.date}}
-         <span class="text-sm text-teal-800 font-mono bg-blue inline rounded-full px-2 align-top float-right animate-pulse">
+         <span class="text-sm text-teal-800 font-mono bg-blue-darker inline rounded-full px-2 align-top float-right animate-pulse">
             <button class="close" @click="removeNote(index)"> </button>
            </span></h4>
          <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">
