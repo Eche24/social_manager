@@ -15,9 +15,9 @@
   @apply bg-grey-darker;
 }
 
-.clickable {
+/* .clickable {
   -webkit-app-region: no-drag;
-}
+} */
 
 .border-blackblack {
   border-color: black;

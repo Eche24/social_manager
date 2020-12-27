@@ -78,9 +78,7 @@ export default {
                     text: '',
                     date: ''
                 },
-                notes: [{
-                   
-                }]
+                notes: []
     } 
     ),
   methods: {

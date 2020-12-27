@@ -28,7 +28,7 @@
 					<div class="p-6">
 						<h4 class='font-medium text-grey  text-xl mb-3'>{{user.name}}</h4>
 						<p class="text-sm text-grey block mt-6"> {{user.saved}}  </p>
-						<button  @click.prevent="confirmDelete(user._id)" class='-m-4 w-12 h-12 bg-blue-dark flex items-center justify-center text-center no-underline rounded-full text-white hover:bg-blue-darker absolute pin-t pin-r' href='#'>
+						<button @click="confirmDelete(user._id)" class='-m-4 w-12 h-12 bg-blue-dark flex items-center justify-center text-center no-underline rounded-full text-white hover:bg-blue-darker absolute pin-t pin-r' href='#'>
 							<i class='text-xl text-grey  fa fa-plus'> X </i>
 						</button>
 					</div>
@@ -70,6 +70,7 @@
 <script>
 import db from '../db'
 export default {
+  name:'account',
   data: () => ({
   
      usersData:[]
@@ -93,7 +94,7 @@ export default {
     confirmDelete(id) {
       let action = confirm('Are you sure you want to remove this account?');
       if (action == true) {
-        db.users.remove ({_id: id});
+        db.users.remove({_id: id});
         alert('deleted!')
       }
     }
