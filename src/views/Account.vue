@@ -29,7 +29,7 @@
 						<h4 class='font-medium text-grey  text-xl mb-3'>{{user.name}}</h4>
 						<p class="text-sm text-grey block mt-6"> {{user.saved}}  </p>
 						<button @click="confirmDelete(user)" class='-m-4 w-12 h-12 bg-blue-dark flex items-center justify-center text-center no-underline rounded-full text-white hover:bg-blue-darker absolute pin-t pin-r' href='#'>
-							<i class='text-xl text-grey  fa fa-plus'> X </i>
+							<i class='text-xl text-grey  fa fa-plus close'> </i>
 						</button>
 					</div>
 				</div>
@@ -106,3 +106,39 @@ export default {
   }
 }
 </script>
+<style scoped>
+/* #text-box {
+	width: 200px;
+	height: 120px;
+  padding: 5px;
+} */
+ .close {
+            text-align: center;
+            height: 10px;
+            width: 10px;
+            position: relative;
+            box-sizing: border-box;
+            line-height: 10px;
+            display: inline-block;
+        }
+        .close:before, .close:after {
+            transform: rotate(-45deg);
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -1px;
+            margin-left: -5px;
+            display: block;
+            height: 2px;
+            width: 10px;
+            background-color: black;
+            transition: all 0.25s ease-out;
+        }
+        .close:after {
+            transform: rotate(-135deg);
+        }
+        .close:hover:before, .close:hover:after {
+            transform: rotate(0deg);
+        }
+</style>
