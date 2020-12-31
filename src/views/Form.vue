@@ -18,12 +18,22 @@
 
           </div>
         <div class="w-1/2 mx-auto">
-            <form>
+        <p v-if="errors.length">
+    <b>Please correct the following error(s):</b>
+    <ul>
+      <li v-for="error in errors"> {{ error }}</li>
+    </ul>
+  </p>
+            <form
+             novalidate="true"
+            >
                     <div class="relative w-full mb-3">
-                      <label class="block uppercase text-gray-700 text-xs font-bold mb-2 pt-2" for="grid-password">Email/Username</label>
+                      <label 
+                      class="block uppercase text-gray-700 text-xs font-bold mb-2 pt-2" 
+                      for="name">Email/Username</label>
                         <input type="email"
-                               class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                               placeholder="Email" style="transition: all 0.15s ease 0s;"
+                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+                         placeholder="Email" style="transition: all 0.15s ease 0s;"
                         v-model="email"
                          required
                         />
@@ -31,7 +41,7 @@
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="grid-password"
+                        for="name"
                         >Save as (Display name)</label
                       ><input
                         type="text"
@@ -40,17 +50,17 @@
                         style="transition: all 0.15s ease 0s;"
                         v-model="saved"
                         required
+                        name="name"
+                        id="name"
                       />
                     </div>
                     <div class="text-center mt-6">
-                      <button
-                        class="bg-blue-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                        type="button"
-                        style="transition: all 0.15s ease 0s;"
-                        @click.prevent="addUser"
-                      >
-                        Save
-                      </button>
+                           <button 
+                             @click.prevent="addUser" 
+                             style="transition: all 0.15s ease 0s;"
+                             class="ml-4 px-4 py-2 text-gray-800 font-semibold bg-white hover:bg-gray-100 border rounded focus:outline-none focus:shadow-outline active:bg-gray-700">
+                           Add Account
+                         </button>
                     </div>
                   </form>
         </div> 
@@ -66,21 +76,35 @@ export default {
   data: () => ({
      email:'',
      saved: "",
-     usersData:[]
+     usersData:[],
+      errors: []
   }),
    async mounted() {
          this.usersData = await db.users.find()
    },
   methods: {
     async addUser() {
-            await db.users.insert({
-         name: this.email,
-         saved: this.saved,
-         site: this.url
-      });
+        if (this.email && this.saved) {
+              await db.users.insert({
+          name: this.email,
+          saved: this.saved,
+          site: this.url,
+      } );
+        setTimeout(() => {
+              alert('Account has been added')
+            }, 1000);
+      }
+    this.errors = [];
+     if (!this.email) {
+       this.errors.push('Name required.');
+      }
+      if (!this.saved) {
+        this.errors.push('Email required.');
+      }
      this.email = '',
      this.saved = ''
     }
+    
   }
 }
 </script>
