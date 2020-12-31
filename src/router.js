@@ -1,37 +1,40 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./views/Home.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: Home
     },
     {
-      path: '/Note',
-      name: 'Note',
-      component: () => import(/* webpackChunkName: "note" */ './views/Note.vue')
+      path: "/Note",
+      name: "Note",
+      component: () => import(/* webpackChunkName: "note" */ "./views/Note.vue")
     },
     {
-      path: '/Account',
-      name: 'Account',
-      component: () => import(/* webpackChunkName: "About" */ './views/Account.vue')
+      path: "/Account",
+      name: "Account",
+      component: () =>
+        import(/* webpackChunkName: "About" */ "./views/Account.vue")
     },
     {
-      path: '/About',
-      name: 'About',
-      component: () => import(/* webpackChunkName: "About" */ './views/About.vue')
+      path: "/About",
+      name: "About",
+      component: () =>
+        import(/* webpackChunkName: "About" */ "./views/About.vue")
     },
     {
-      path: '/Schedule',
-      name: 'Schedule',
-      component: () => import(/* webpackChunkName: "categories" */ './views/Schedule.vue')
+      path: "/Schedule",
+      name: "Schedule",
+      component: () =>
+        import(/* webpackChunkName: "categories" */ "./views/Schedule.vue")
     },
     // {
     //   path: '/twitter',
@@ -52,16 +55,17 @@ export default new Router({
     //   component: () => import(/* webpackChunkName: "product" */ './views/Linkedin.vue')
     // },
     {
-      path: '/form',
-      name: 'form',
+      path: "/form",
+      name: "form",
       props: true,
-      component: () => import(/* webpackChunkName: "product" */ './views/Form.vue')
+      component: () =>
+        import(/* webpackChunkName: "product" */ "./views/Form.vue")
     },
     {
-      path: '/viewer',
-      name: 'viewer',
+      path: "/viewer",
+      name: "viewer",
       props: true,
-      component: () => import('./views/Viewer.vue')
-    },
+      component: () => import("./views/Viewer.vue")
+    }
   ]
-})
+});

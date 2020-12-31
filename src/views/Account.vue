@@ -68,43 +68,40 @@
 </template>
 
 <script>
-import db from '../db'
+import db from "../db";
 export default {
   data: () => ({
-    //  email:'',
-    //  password: "",
-    //  saved: "",
-     usersData:[]
+    usersData: []
   }),
-   async mounted() {
-         this.usersData = await db.users.find()
-   },
-  methods:  {
+  async mounted() {
+    this.usersData = await db.users.find();
+  },
+  methods: {
     form(title, url) {
       this.$router.push({
-        name: 'viewer',
+        name: "viewer",
         params: { title, url }
-      })
+      });
     },
     openViewer(url, userKey) {
       this.$router.push({
-        name: 'viewer',
+        name: "viewer",
         params: { userKey, url }
       });
     },
     async confirmDelete(user) {
-      let action = confirm('Are you sure you want to remove this account?');
+      let action = confirm("Are you sure you want to remove this account?");
       if (action === true) {
-        const deleted = await db.users.remove({_id: user._id});
-        alert('deleted!');
+        const deleted = await db.users.remove({ _id: user._id });
+        alert("deleted!");
         if (deleted === 1) {
-            const idx = this.usersData.indexOf(user);
-            this.usersData.splice(idx, 1);
+          const idx = this.usersData.indexOf(user);
+          this.usersData.splice(idx, 1);
         }
       }
     }
   }
-}
+};
 </script>
 <style scoped>
 /* #text-box {
@@ -112,33 +109,35 @@ export default {
 	height: 120px;
   padding: 5px;
 } */
- .close {
-            text-align: center;
-            height: 10px;
-            width: 10px;
-            position: relative;
-            box-sizing: border-box;
-            line-height: 10px;
-            display: inline-block;
-        }
-        .close:before, .close:after {
-            transform: rotate(-45deg);
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -1px;
-            margin-left: -5px;
-            display: block;
-            height: 2px;
-            width: 10px;
-            background-color: black;
-            transition: all 0.25s ease-out;
-        }
-        .close:after {
-            transform: rotate(-135deg);
-        }
-        .close:hover:before, .close:hover:after {
-            transform: rotate(0deg);
-        }
+.close {
+  text-align: center;
+  height: 10px;
+  width: 10px;
+  position: relative;
+  box-sizing: border-box;
+  line-height: 10px;
+  display: inline-block;
+}
+.close:before,
+.close:after {
+  transform: rotate(-45deg);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -5px;
+  display: block;
+  height: 2px;
+  width: 10px;
+  background-color: black;
+  transition: all 0.25s ease-out;
+}
+.close:after {
+  transform: rotate(-135deg);
+}
+.close:hover:before,
+.close:hover:after {
+  transform: rotate(0deg);
+}
 </style>

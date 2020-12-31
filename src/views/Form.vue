@@ -1,5 +1,4 @@
 <template>
-  <!-- <transition name="router-animation" enter-active-class="animated slideInRight faster"> -->
     <div class="bg-black ml-56 flex-1 text-white pt-10 px-10" style="font-family: 'Poppins', sans-serif;">
       <h1 class="mb-12">Add Account</h1>
       <button class="text-white bg-blue px-4 py-2 rounded-lg mb-5" @click="$router.go(-1)">Back</button>
@@ -19,11 +18,11 @@
           </div>
         <div class="w-1/2 mx-auto">
         <p v-if="errors.length">
-    <b>Please correct the following error(s):</b>
-    <ul>
-      <li v-for="error in errors" :key="error"> {{ error }}</li>
-    </ul>
-  </p>
+            <b>Please correct the following error(s):</b>
+            <ul>
+              <li v-for="error in errors" :key="error"> {{ error }}</li>
+            </ul>
+         </p>
             <form
              novalidate="true"
             >
@@ -62,50 +61,46 @@
                            Add Account
                          </button>
                     </div>
-                  </form>
+             </form>
         </div> 
       </section>
     </div>
-  <!-- </transition> -->
 </template>
 
 <script>
-import db from '../db'
+import db from "../db";
 export default {
-  props: ['title', 'url'],
+  props: ["title", "url"],
   data: () => ({
-     email:'',
-     saved: "",
-     usersData:[],
-      errors: []
+    email: "",
+    saved: "",
+    usersData: [],
+    errors: []
   }),
-   async mounted() {
-         this.usersData = await db.users.find()
-   },
+  async mounted() {
+    this.usersData = await db.users.find();
+  },
   methods: {
     async addUser() {
-        if (this.email && this.saved) {
-              await db.users.insert({
+      if (this.email && this.saved) {
+        await db.users.insert({
           name: this.email,
           saved: this.saved,
-          site: this.url,
-      } );
+          site: this.url
+        });
         setTimeout(() => {
-              alert('Account has been added')
-            }, 1000);
+          alert("Account has been added");
+        }, 1000);
       }
-    this.errors = [];
-     if (!this.email) {
-       this.errors.push('Email/Username required');
+      this.errors = [];
+      if (!this.email) {
+        this.errors.push("Email/Username required");
       }
       if (!this.saved) {
-        this.errors.push('Display Name required.');
+        this.errors.push("Display Name required.");
       }
-     this.email = '',
-     this.saved = ''
+      (this.email = ""), (this.saved = "");
     }
-    
   }
-}
+};
 </script>
-

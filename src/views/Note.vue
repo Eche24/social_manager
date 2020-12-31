@@ -18,11 +18,11 @@
         <Modal :open="open" @close="open = false" class="flex items-center justify-center z-40 mt-8" >
           <div class="max-w-lg w-full rounded-lg shadow-2xl px-6 py-6 z-40 bg-blue-darker">
               <p v-if="errors.length">
-    <ul>
-      <li v-for="error in errors" :key="error" class="pb-2">{{ error }}</li>
-    </ul>
-  </p>
-            <form >
+                    <ul>
+                      <li v-for="error in errors" :key="error" class="pb-2">{{ error }}</li>
+                    </ul>
+             </p>
+            <form>
                   <textarea
                   autofocus 
                   placeholder="text here" 
@@ -71,53 +71,52 @@
   </div>
 </template>
 <script>
-import Modal from '../components/modal'
+import Modal from "../components/modal";
 export default {
   components: {
     Modal
   },
-  data: () =>(
-     {
-        open: false,
-           note: {
-                    text: '',
-                    date: ''
-                },
-                notes: [],
-                errors: [],
-    } 
-    ),
+  data: () => ({
+    open: false,
+    note: {
+      text: "",
+      date: ""
+    },
+    notes: [],
+    errors: []
+  }),
   methods: {
-   addNote() {
-     this.errors = [];
-        if (!this.note.text) {
+    addNote() {
+      this.errors = [];
+      if (!this.note.text) {
         this.errors.push("text required.");
       }
-        if (!this.errors.length) {
-           let {text,} = this.note
-                    this.notes.push({
-                        text,
-                        date: new Date(Date.now()).toLocaleString(),
-              })
-         this.note.text = ''
+      if (!this.errors.length) {
+        let { text } = this.note;
+        this.notes.push({
+          text,
+          date: new Date(Date.now()).toLocaleString()
+        });
+        this.note.text = "";
       }
-       },
-        removeNote(index) {
-            this.$delete(this.notes, index)
-      },
+    },
+    removeNote(index) {
+      this.$delete(this.notes, index);
+    }
   },
-   mounted() {
-                if (localStorage.getItem('notes')) this.notes = JSON.parse(localStorage.getItem('notes'));
-            },
-               watch: {
-                notes: {
-                    handler() {
-                        localStorage.setItem('notes', JSON.stringify(this.notes));
-                    },
-                    deep: true,
-                },
-            }
-}
+  mounted() {
+    if (localStorage.getItem("notes"))
+      this.notes = JSON.parse(localStorage.getItem("notes"));
+  },
+  watch: {
+    notes: {
+      handler() {
+        localStorage.setItem("notes", JSON.stringify(this.notes));
+      },
+      deep: true
+    }
+  }
+};
 </script>
 <style scoped>
 /* #text-box {
@@ -125,33 +124,35 @@ export default {
 	height: 120px;
   padding: 5px;
 } */
- .close {
-            text-align: center;
-            height: 10px;
-            width: 10px;
-            position: relative;
-            box-sizing: border-box;
-            line-height: 10px;
-            display: inline-block;
-        }
-        .close:before, .close:after {
-            transform: rotate(-45deg);
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -1px;
-            margin-left: -5px;
-            display: block;
-            height: 2px;
-            width: 10px;
-            background-color: black;
-            transition: all 0.25s ease-out;
-        }
-        .close:after {
-            transform: rotate(-135deg);
-        }
-        .close:hover:before, .close:hover:after {
-            transform: rotate(0deg);
-        }
+.close {
+  text-align: center;
+  height: 10px;
+  width: 10px;
+  position: relative;
+  box-sizing: border-box;
+  line-height: 10px;
+  display: inline-block;
+}
+.close:before,
+.close:after {
+  transform: rotate(-45deg);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -5px;
+  display: block;
+  height: 2px;
+  width: 10px;
+  background-color: black;
+  transition: all 0.25s ease-out;
+}
+.close:after {
+  transform: rotate(-135deg);
+}
+.close:hover:before,
+.close:hover:after {
+  transform: rotate(0deg);
+}
 </style>

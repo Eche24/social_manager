@@ -64,50 +64,33 @@
 </template>
 
 <script>
-// import Flickity from 'vue-flickity'
-
-// @ is an alias to /src
 export default {
-  name: 'home',
+  name: "home",
   components: {
     // Flickity
   },
-  created() {
-    window.addEventListener('scroll', this.toggleTitleBar, { passive: true })
-  },
   data() {
-    return {
-      // image2: require('../assets/discover1-2.jpg'),
-      titleBarVisible: false,
-      flickityOptions: {
-        initialIndex: 0,
-        prevNextButtons: true,
-        pageDots: false,
-        wrapAround: false
-
-        // any options from Flickity can be used
-      }
-    }
+    return {};
   },
   methods: {
     toggleTitleBar() {
       // console.log(window.scrollY);
 
       // if (window.scrollY > 0) {
-      //   this.titleBarVisible = true
+      //   this.titleBarVisible = true;
       // } else {
-      //   this.titleBarVisible = false
+      //   this.titleBarVisible = false;
       // }
 
       // throttle or debounce for better performance (with lodash)
-      this.titleBarVisible = window.scrollY > 0 ? true : false
+      this.titleBarVisible = window.scrollY > 0 ? true : false;
     },
     form(title, url) {
       this.$router.push({
-        name: 'form',
+        name: "form",
         params: { title, url }
-      })
-    },
+      });
+    }
     // twitter(title) {
     //   this.$router.push({
     //     name: 'twitter',
@@ -121,11 +104,9 @@ export default {
     //   })
     // },
   }
-}
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 </style>>
-
-
