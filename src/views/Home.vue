@@ -16,9 +16,6 @@
           <h1 class="font-normal text-2xl mb-4">Facebook</h1>
           <p class="text-grey-light text-xs leading-normal mb-4">Add your facebook account</p>
            <div class="mb-8 text-right">
-              <!-- <button class="bg-white text-blue rounded-full px-3 py-1 text-xs font-bold" @click="form('form')">
-                Add Account
-              </button> -->
               <button @click="form('form', 'fb')" class="bg-white text-blue active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" v-on:click="toggleModal()">
                   Add Account
               </button>
@@ -66,9 +63,7 @@
 <script>
 export default {
   name: "home",
-  components: {
-    // Flickity
-  },
+  components: {},
   data() {
     return {};
   },
@@ -91,18 +86,6 @@ export default {
         params: { title, url }
       });
     }
-    // twitter(title) {
-    //   this.$router.push({
-    //     name: 'twitter',
-    //     params: { title }
-    //   })
-    // },
-    // linkedin(title) {
-    //   this.$router.push({
-    //     name: 'linkedin',
-    //     params: { title }
-    //   })
-    // },
   }
 };
 </script>
