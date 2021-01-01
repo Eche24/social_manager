@@ -11,13 +11,13 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten"
-
   },
   "dependencies": {
     "nedb": "^1.8.0",
     "nedb-promises": "^4.1.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
+    "vue-simple-alert": "^1.1.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

@@ -74,7 +74,7 @@ export default {
     usersData: []
   }),
   async mounted() {
-    this.usersData = await db.users.find();
+    this.usersData = await db.users.find({}).sort({});
   },
   methods: {
     form(title, url) {
@@ -93,11 +93,13 @@ export default {
       let action = confirm("Are you sure you want to remove this account?");
       if (action === true) {
         const deleted = await db.users.remove({ _id: user._id });
-        alert("deleted!");
         if (deleted === 1) {
           const idx = this.usersData.indexOf(user);
           this.usersData.splice(idx, 1);
         }
+        setTimeout(() => {
+          this.$alert("Account has been deleted");
+        }, 1000);
       }
     }
   }

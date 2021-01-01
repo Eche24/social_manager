@@ -89,8 +89,8 @@ export default {
           site: this.url
         });
         setTimeout(() => {
-          alert("Account has been added");
-        }, 1000);
+          this.$alert("Account has been added");
+        }, 500);
       }
       this.errors = [];
       if (!this.email) {
