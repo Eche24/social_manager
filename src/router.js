@@ -66,6 +66,18 @@ export default new Router({
       name: "viewer",
       props: true,
       component: () => import("./views/Viewer.vue")
+    },
+    {
+      path: "/handle",
+      name: "handle",
+      props: true,
+      component: () => import("./views/HandleForm.vue")
+    },
+    {
+      path: "/manger",
+      name: "manager",
+      props: true,
+      component: () => import("./views/ManageSchedule.vue")
     }
   ]
 });

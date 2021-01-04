@@ -30,7 +30,7 @@
           <img src="../assets/twitter.png" alt="image" class="rounded-full w-40">
         </div>
         <!-- <h1 class="font-normal text-2xl mb-4" >Twitter</h1> -->
-        <p class="text-grey-light text-xl leading-normal mb-4">Add your twiiter account</p>
+      <p class="text-grey-light text-xl leading-normal mb-4">Add your twitter account</p>
       <div class="text-center">
        <button 
        @click="form('form', 'twitter')" class="bg-white text-blue active:bg-pink-600 font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" v-on:click="toggleModal()">

@@ -13,9 +13,11 @@
     "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "nedb": "^1.8.0",
     "nedb-promises": "^4.1.0",
     "vue": "^2.5.17",
+    "vue-facebook-login-component": "^3.0.0",
     "vue-router": "^3.0.1",
     "vue-simple-alert": "^1.1.1",
     "vuex": "^3.0.1"
