@@ -30,7 +30,7 @@
       <div class="post-content">
         <div class="form-group flex flex-col mb-4">
           <label class="mb-2 uppercase font-bold text-lg">Message</label>
-          <textarea name="message" rows="5" class="w-100" cols="12" v-model="postBody"></textarea>
+          <textarea name="message" rows="5" class="shadow focus:outline-none focus:shadow-outline w-full resize-none border rounded-md" cols="12" v-model="postBody"></textarea>
         </div>
         <div class="post-type flex">
           <div class="form-group mr-4">
