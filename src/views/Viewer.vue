@@ -22,6 +22,8 @@ export default {
         finalUrl = "https://facebook.com";
       } else if (url === "twitter") {
         finalUrl = "https://twitter.com";
+      } else if (url === "instagram") {
+        finalUrl = "https://instagram.com";
       } else if (url === "lnk") {
         finalUrl = "https://linkedin.com";
       }

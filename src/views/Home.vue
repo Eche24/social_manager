@@ -43,12 +43,28 @@
       <div class="w-1/2 ml-4 bg-grey-darkest rounded-lg px-8 py-6">
       <div class="flex-1">
        <div class="text-center">
+          <img src="../assets/instagram.png" alt="image" class="rounded-full w-40">
+        </div>
+        <!-- <h1 class="font-normal text-2xl mb-4" >Linkedin</h1> -->
+        <p class="text-grey-light text-xl leading-normal mb-4">Add your Instagram account</p>
+        <div class="text-center">
+      <button 
+      @click="form('Instagram', 'instagram')" class="bg-white text-blue active:bg-pink-600 font-bold text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" v-on:click="toggleModal()">
+      Add Account
+    </button>
+      </div>
+      </div>
+      </div>
+
+      <div class="w-1/2 ml-4 bg-grey-darkest rounded-lg px-8 py-6">
+      <div class="flex-1">
+       <div class="text-center">
           <img src="../assets/linkedin.png" alt="image" class="rounded-full w-40">
         </div>
         <!-- <h1 class="font-normal text-2xl mb-4" >Linkedin</h1> -->
         <p class="text-grey-light text-xl leading-normal mb-4">Add your linkedin account</p>
         <div class="text-center">
-      <button 
+      <button
       @click="form('Linkedin', 'lnk')" class="bg-white text-blue active:bg-pink-600 font-bold text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" v-on:click="toggleModal()">
       Add Account
     </button>

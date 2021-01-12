@@ -10,6 +10,9 @@
           <div v-else-if="url === 'twitter'">
               <img src="../assets/twitter.png" alt="image" class="rounded-full w-40">
           </div>
+          <div v-else-if="url === 'instagram'">
+              <img src="../assets/instagram.png" alt="image" class="rounded-full w-40">
+          </div>
           <div v-else-if="url === 'lnk'">
               <img src="../assets/linkedin.png" alt="image" class="rounded-full w-40">
           </div>
@@ -53,13 +56,47 @@
                         id="name"
                       />
                     </div>
+                <Modal :open="open" @close="open = false" class="flex items-center justify-center z-40 mt-8" >
+                    <div class="max-w-lg w-full rounded-lg shadow-2xl px-6 py-6 z-40 bg-blue-darker">
+                        <p v-if="errors.length">
+                        <ul>
+                            <li v-for="error in errors" :key="error" class="pb-2">{{ error }}</li>
+                        </ul>
+                        </p>
+                        <form>
+                  <input type="text"
+                          autofocus
+                          placeholder="Business Name"
+                          id="text-box"
+                          rows="6"
+                          cols="32"
+                          v-model="profileName"
+                          class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full resize-none border rounded-md" required></input>
+                            <div class="mt-6">
+                                <button   @click.prevent="addProfile" class="ml-4 px-4 py-2 text-gray-800 font-semibold bg-white hover:bg-gray-100 border rounded focus:outline-none focus:shadow-outline">
+                                    Add Note
+                                </button>
+                                <button @click="open = false" class="ml-4 px-4 py-2 text-gray-800 font-semibold bg-white hover:bg-gray-100 border rounded focus:outline-none focus:shadow-outline">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </Modal>
+                <div class="border p-3">
+                    <select class="w-full px-3 py-3" v-model="selectedProfile">
+                        <option disabled value="">Please select one</option>
+                        <option v-for="profile in profiles" v-bind:value="profile._id" v-bind:key="profile._id">{{ profile.profileName }}</option>
+                    </select>
+                    <button @click="open = true" class="bg-white text-blue mx-auto p-2 rounded mt-4">New Profile</button>
+                </div>
                     <div class="text-center mt-6">
                            <button 
                              @click.prevent="addUser" 
                              style="transition: all 0.15s ease 0s;"
                              class="ml-4 px-4 py-2 text-gray-800 font-semibold bg-white hover:bg-gray-100 border rounded focus:outline-none focus:shadow-outline active:bg-gray-700">
                            Add Account
-                         </button>
+                           </button>
                     </div>
              </form>
         </div> 
@@ -69,20 +106,36 @@
 
 <script>
 import db from "../db";
+import Modal from "../components/modal";
 export default {
+  components: {
+    Modal
+  },
   props: ["title", "url"],
   data: () => ({
     email: "",
     saved: "",
+    profile: [],
+    profileName: null,
+    profiles: [],
+    selectedProfile: "",
     usersData: [],
+    open: false,
     errors: []
   }),
   async mounted() {
     this.usersData = await db.users.find();
+    this.profiles = await db.profiles.find();
+    console.log(JSON.stringify(this.profiles));
+  },
+  watch: {
+    selectedProfile: function(value) {
+      //alert(value);
+    }
   },
   methods: {
     async addUser() {
-      if (this.email && this.saved) {
+      if (this.email && this.saved && this.selectedProfile) {
         await db.users.insert({
           name: this.email,
           saved: this.saved,
@@ -99,8 +152,66 @@ export default {
       if (!this.saved) {
         this.errors.push("Display Name required.");
       }
-      (this.email = ""), (this.saved = "");
+      if (!this.selectedProfile) {
+        this.errors.push("Business Name required.");
+      }
+
+      await db.profiles.update(
+        { _id: this.selectedProfile },
+        {
+          $push: {
+            accounts: { name: this.email, saved: this.saved, site: this.url }
+          }
+        }
+      );
+
+      if (this.errors.length === 0) {
+        (this.email = ""), (this.saved = "");
+      }
+    },
+
+    async addProfile() {
+      const profile = await db.profiles.insert({
+        profileName: this.profileName
+      });
+      this.open = false;
+      if (profile.profileName !== "") {
+        this.profiles.splice(0, 0, profile);
+      }
     }
   }
 };
 </script>
+<style scoped>
+.close {
+  text-align: center;
+  height: 10px;
+  width: 10px;
+  position: relative;
+  box-sizing: border-box;
+  line-height: 10px;
+  display: inline-block;
+}
+.close:before,
+.close:after {
+  transform: rotate(-45deg);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -5px;
+  display: block;
+  height: 2px;
+  width: 10px;
+  background-color: black;
+  transition: all 0.25s ease-out;
+}
+.close:after {
+  transform: rotate(-135deg);
+}
+.close:hover:before,
+.close:hover:after {
+  transform: rotate(0deg);
+}
+</style>

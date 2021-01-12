@@ -6,6 +6,10 @@ const users = new Datastore({
   autoload: true,
   filename: path.join(remote.app.getPath("userData"), "/users.db")
 });
+const profiles = new Datastore({
+  autoload: true,
+  filename: path.join(remote.app.getPath("userData"), "/profiles.db")
+});
 
 const pages = new Datastore({
   autoload: true,
@@ -19,6 +23,7 @@ const posts = new Datastore({
 
 export default {
   users,
+  profiles,
   pages,
   posts
 };
