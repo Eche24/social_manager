@@ -41,13 +41,14 @@
 
     <div class="absolute pin-b w-full pb-4">
       <div class="sidebar-icon flex items-center px-4 py-2 text-grey no-underline cursor-pointer hover:bg-grey-darker">
-        <svg class="mr-3" width="34px" height="34px" viewBox="0 0 34 34">
+        <!-- <svg class="mr-3" width="34px" height="34px" viewBox="0 0 34 34">
           <circle fill="#D8D8D8" fill-rule="nonzero" cx="17" cy="17" r="17"></circle>
           <text font-size="15" font-weight="300" fill="#2D2F31">
               <tspan x="4.85714286" y="21.7857143">SM</tspan>
           </text>
-        </svg>
-        <div class="text-white">Social Manager</div>
+        </svg> -->
+        <!-- <div class="text-white">Social Manager</div> -->
+        <img  src="../assets/logo.svg" alt="image" class="rounded-full w-20" />
       </div>
        <!-- end sidebar-icon -->
 
