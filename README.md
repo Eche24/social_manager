@@ -1,5 +1,7 @@
 
-# social-manager desktop application with electronjs and vuejs
+# social-manager
+
+### desktop application with electronjs and vuejs
 
 ## Project setup
 ```
